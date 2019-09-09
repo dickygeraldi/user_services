@@ -1,24 +1,13 @@
-############################
-# STEP 1 build executable binary
-############################
-FROM golang:alpine AS builder
+FROM golang:1.12 as build
 
-# Install git.
-# Git is required for fetching the dependencies.
-RUN apk update && apk add --no-cache git
-WORKDIR $GOPATH/src/creart_new
+WORKDIR /go/src/app
+
 COPY . .
 
-# Fetch dependencies.
-# Using go get.
-RUN go get -d -v
-# Build the binary.
-RUN go build -o creart_new
+RUN go build -o app
 
-############################
-# STEP 2 build a small image
-############################
-FROM scratch
+FROM alpine:3.7
 
-# Run the hello binary.
-ENTRYPOINT ["main.go"]
+COPY --from=build /go/src/app/app /usr/local/bin/app
+
+ENTRYPOINT ["/usr/local/bin/app"]
