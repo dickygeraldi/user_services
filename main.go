@@ -5,20 +5,17 @@ import (
 	"net/http"
 	"os"
 
-	"creart_new/controllers"
+	"user_services/controllers"
 
 	"github.com/gin-gonic/gin"
-	"google.golang.org/appengine"
 )
 
 func main() {
+	// router := mux.NewRouter()
 	router := gin.Default()
-
 	// group authentication create account creator
-	auth := router.Group("/auth")
-	{
-		auth.POST("/v1/create-account", controllers.CreateCreatorAccount)
-	}
+	// router.HandleFunc("/v1/create-account", controllers.CreateCreatorAccount).Methods("POST") // Create Creator Account
+	router.POST("/v1/create-account", controllers.CreateCreatorAccount)
 
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -30,6 +27,5 @@ func main() {
 		fmt.Print(err)
 	}
 
-	router.Run()
-	appengine.Main()
+	// router.Use(authentication.JwtAuthentication)
 }

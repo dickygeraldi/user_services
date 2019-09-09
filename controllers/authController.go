@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"creart_new/models"
 	"net/http"
+	"user_services/models"
 
 	"github.com/gin-gonic/gin"
 )

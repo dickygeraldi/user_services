@@ -1,24 +1,22 @@
-############################
-# STEP 1 build executable binary
-############################
-FROM golang:alpine AS builder
+# FROM golang:latest
+# RUN mkdir /app
+# ADD . /app
+# WORKDIR /app
+# RUN go build -o app .
+# FROM scratch
+# CMD ["/app/main"]
 
-# Install git.
-# Git is required for fetching the dependencies.
-RUN apk update && apk add --no-cache git
-WORKDIR $GOPATH/src/creart_new
+FROM golang:latest as build-env
+RUN mkdir /app
+WORKDIR /app
+COPY go.mod . 
+COPY go.sum .
+
+RUN go mod download
 COPY . .
 
-# Fetch dependencies.
-# Using go get.
-RUN go get -d -v
-# Build the binary.
-RUN go build -o creart_new
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -o user_services_app
 
-############################
-# STEP 2 build a small image
-############################
-FROM scratch
-
-# Run the hello binary.
-ENTRYPOINT ["main.go"]
+FROM scratch 
+COPY --from=build-env /app/user_services_app /app/user_services_app
+ENTRYPOINT ["/app/user_services_app"]
