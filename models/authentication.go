@@ -103,8 +103,6 @@ func (data *AccountData) Validate() (map[string]interface{}, bool) {
 		return gin.H{"status": false, "message": "Phone number must be number"}, false
 	}
 
-	// rows, _ := base.GetDB().Query("select username, email, phone from creator where username=$1 or phone=$2 or email=$3 limit 3", data.Username, data.Phone, data.Email)
-
 	return gin.H{"status": false, "message": "Requirement passed"}, true
 }
 
@@ -120,6 +118,7 @@ func (data *AccountData) CreateCreator() map[string]interface{} {
 	accountJSONString := string(accountByte)
 
 	go SendMessage("mailing_service", accountJSONString)
+	// go
 
 	// Add parameter
 	data.UserId = GetRandomString()
@@ -139,5 +138,11 @@ func (data *AccountData) CreateCreator() map[string]interface{} {
 	response := gin.H{"Status": true, "Message": "Data berhasil masuk"}
 	response["creatorData"] = data
 
+	return response
+}
+
+func (data *AccountData) Data() map[string]interface{} {
+	response := gin.H{"Status": true, "Message": "Hallo User Services"}
+	response["creatorData"] = data
 	return response
 }

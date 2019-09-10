@@ -30,7 +30,6 @@ type Token struct {
 	Timestamps time.Time
 	jwt.StandardClaims
 }
-
 type KafkaProducer struct {
 	Producer sarama.SyncProducer
 }

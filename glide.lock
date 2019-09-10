@@ -1,0 +1,177 @@
+hash: 245c2c0b71cdb389891b5ad79126e1f6e317d11bac08042446f511c889370b04
+updated: 2019-09-10T16:04:41.325472733+07:00
+imports:
+- name: github.com/DataDog/zstd
+  version: 2347a397da4ee9c6b8226d4aff82c302d0e52773
+- name: github.com/davecgh/go-spew
+  version: d8f796af33cc11cb798c1aaeb27a4ebc5099927d
+  subpackages:
+  - spew
+- name: github.com/dgrijalva/jwt-go
+  version: 06ea1031745cb8b3dab3f6a236daf2b0aa468b7e
+- name: github.com/eapache/go-resiliency
+  version: b98ce2825f7276cc41027348986a241ef5d62fd8
+  subpackages:
+  - breaker
+- name: github.com/eapache/go-xerial-snappy
+  version: 776d5712da21bc4762676d614db1d8a64f4238b0
+- name: github.com/eapache/queue
+  version: 093482f3f8ce946c05bcba64badd2c82369e084d
+- name: github.com/gin-contrib/sse
+  version: 43f0f29dbd2b3f0feeebff91fd9cda22db296938
+- name: github.com/gin-gonic/gin
+  version: b75d67cd51eb53c3c3a2fc406524c940021ffbda
+  subpackages:
+  - binding
+  - internal/json
+  - render
+- name: github.com/go-stack/stack
+  version: 2fee6af1a9795aafbe0253a0cfbdf668e1fb8a9a
+- name: github.com/golang/protobuf
+  version: 822fe56949f5d56c9e2f02367c657e0e9b4d27d1
+  subpackages:
+  - proto
+- name: github.com/golang/snappy
+  version: ff6b7dc882cf4cfba7ee0b9f7dcc1ac096c554aa
+- name: github.com/hashicorp/go-uuid
+  version: 4f571afc59f3043a65f8fe6bf46d887b10a01d43
+- name: github.com/jcmturner/gofork
+  version: dc7c13fece037a4a36e2b3c69db4991498d30692
+  subpackages:
+  - encoding/asn1
+  - x/crypto/pbkdf2
+- name: github.com/joho/godotenv
+  version: 23d116af351c84513e1946b527c88823e476be13
+- name: github.com/json-iterator/go
+  version: 27518f6661eba504be5a7a9a9f6d9460d892ade3
+- name: github.com/lib/pq
+  version: 3427c32cb71afc948325f299f040e53c1dd78979
+  subpackages:
+  - oid
+  - scram
+- name: github.com/mattn/go-isatty
+  version: bf9a1dea1961e1d831824fb135332bfb8c10e8b8
+- name: github.com/minio/highwayhash
+  version: 02ca4b43caa3297fbb615700d8800acc7933be98
+- name: github.com/modern-go/concurrent
+  version: bacd9c7ef1dd9b15be4a9909b8ac7a4e313eec94
+- name: github.com/modern-go/reflect2
+  version: 94122c33edd36123c84d5368cfb2b69df93a0ec8
+- name: github.com/pierrec/lz4
+  version: 0554902aa74a6a41b367c6352ebcc922b26782b1
+  subpackages:
+  - internal/xxh32
+- name: github.com/rcrowley/go-metrics
+  version: cac0b30c2563378d434b5af411844adff8e32960
+- name: github.com/Shopify/sarama
+  version: 46c83074a05474240f9620fb7c70fb0d80ca401a
+- name: github.com/ugorji/go
+  version: 42bc974514ff101a54c6b72a0e4dee29d96c0b26
+  subpackages:
+  - codec
+- name: github.com/xdg/scram
+  version: 7eeb5667e42c09cb51bf7b7c28aea8c56767da90
+- name: github.com/xdg/stringprep
+  version: 73f8eece6fdcd902c185bf651de50f3828bed5ed
+- name: go.mongodb.org/mongo-driver
+  version: c520d023af0a89aec8b7f97717b52da270df2c38
+  subpackages:
+  - bson
+  - bson/bsoncodec
+  - bson/bsonrw
+  - bson/bsontype
+  - bson/primitive
+  - event
+  - internal
+  - mongo
+  - mongo/options
+  - mongo/readconcern
+  - mongo/readpref
+  - mongo/writeconcern
+  - tag
+  - version
+  - x/bsonx
+  - x/bsonx/bsoncore
+  - x/mongo/driver
+  - x/mongo/driver/address
+  - x/mongo/driver/auth
+  - x/mongo/driver/auth/internal/gssapi
+  - x/mongo/driver/connstring
+  - x/mongo/driver/description
+  - x/mongo/driver/dns
+  - x/mongo/driver/operation
+  - x/mongo/driver/session
+  - x/mongo/driver/topology
+  - x/mongo/driver/uuid
+  - x/mongo/driver/wiremessage
+- name: golang.org/x/crypto
+  version: 094676da4a83be5288d281081bba63a173ce6772
+  subpackages:
+  - md4
+  - pbkdf2
+- name: golang.org/x/net
+  version: a7b16738d86b947dd0fadb08ca2c2342b51958b6
+  subpackages:
+  - internal/socks
+  - proxy
+- name: golang.org/x/sync
+  version: 112230192c580c3556b8cee6403af37a4fc5f28c
+  subpackages:
+  - semaphore
+- name: golang.org/x/sys
+  version: bbd175535a8b9969bb0b33f1502f681ee0b122bd
+  subpackages:
+  - cpu
+  - unix
+- name: golang.org/x/text
+  version: 3d0f7978add91030e5e8976ff65ccdd828286cba
+  subpackages:
+  - transform
+  - unicode/norm
+- name: gopkg.in/go-playground/validator.v8
+  version: 5f1438d3fca68893a817e4a66806cea46a9e4ebf
+- name: gopkg.in/jcmturner/aescts.v1
+  version: f6abebb3171c4c1b1fea279cb7c7325020a26290
+- name: gopkg.in/jcmturner/dnsutils.v1
+  version: 13eeb8d49ffb74d7a75784c35e4d900607a3943c
+- name: gopkg.in/jcmturner/gokrb5.v7
+  version: 363118e62befa8a14ff01031c025026077fe5d6d
+  subpackages:
+  - asn1tools
+  - client
+  - config
+  - credentials
+  - crypto
+  - crypto/common
+  - crypto/etype
+  - crypto/rfc3961
+  - crypto/rfc3962
+  - crypto/rfc4757
+  - crypto/rfc8009
+  - gssapi
+  - iana
+  - iana/addrtype
+  - iana/adtype
+  - iana/asnAppTag
+  - iana/chksumtype
+  - iana/errorcode
+  - iana/etypeID
+  - iana/flags
+  - iana/keyusage
+  - iana/msgtype
+  - iana/nametype
+  - iana/patype
+  - kadmin
+  - keytab
+  - krberror
+  - messages
+  - pac
+  - types
+- name: gopkg.in/jcmturner/rpc.v1
+  version: 99a8ce2fbf8b8087b6ed12a37c61b10f04070043
+  subpackages:
+  - mstypes
+  - ndr
+- name: gopkg.in/yaml.v2
+  version: 51d6538a90f86fe93ac480b35f37b2be17fef232
+testImports: []
