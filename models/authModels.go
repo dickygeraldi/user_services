@@ -8,7 +8,7 @@ import (
 )
 
 type AccountData struct {
-	UserId      uint
+	UserId      string
 	Username    string
 	Phone       string
 	Password    string

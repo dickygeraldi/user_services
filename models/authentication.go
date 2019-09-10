@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"math/rand"
 	"os"
 	"regexp"
 	"strings"
@@ -72,6 +73,20 @@ func SendMessage(topic, msg string) error {
 	return nil
 }
 
+// Func get random unique data
+func GetRandomString() string {
+	var seededRand *rand.Rand = rand.New(rand.NewSource(time.Now().UnixNano()))
+
+	const charset = "abcdefghijklmnopqrstuvwxyz" + "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+	b := make([]byte, 15)
+	for i := range b {
+		b[i] = charset[seededRand.Intn(len(charset))]
+	}
+
+	return string(b)
+}
+
 // validasi data
 func (data *AccountData) Validate() (map[string]interface{}, bool) {
 	if !strings.Contains(data.Email, "@") {
@@ -107,7 +122,7 @@ func (data *AccountData) CreateCreator() map[string]interface{} {
 	go SendMessage("mailing_service", accountJSONString)
 
 	// Add parameter
-	data.UserId = 19
+	data.UserId = GetRandomString()
 	data.Source = "Create from Apps"
 
 	// Hashing Password

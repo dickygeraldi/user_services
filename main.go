@@ -13,9 +13,10 @@ import (
 func main() {
 	// router := mux.NewRouter()
 	router := gin.Default()
-	// group authentication create account creator
-	// router.HandleFunc("/v1/create-account", controllers.CreateCreatorAccount).Methods("POST") // Create Creator Account
-	router.POST("/v1/create-account", controllers.CreateCreatorAccount)
+	auth := router.Group("/auth")
+	{
+		auth.POST("/v1/create-account", controllers.CreateCreatorAccount)
+	}
 
 	port := os.Getenv("PORT")
 	if port == "" {

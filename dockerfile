@@ -1,22 +1,21 @@
-# FROM golang:latest
-# RUN mkdir /app
-# ADD . /app
-# WORKDIR /app
-# RUN go build -o app .
-# FROM scratch
-# CMD ["/app/main"]
+FROM golang:latest as builder
 
-FROM golang:latest as build-env
-RUN mkdir /app
 WORKDIR /app
-COPY go.mod . 
-COPY go.sum .
+
+COPY go.mod go.sum ./
 
 RUN go mod download
+
 COPY . .
 
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -o user_services_app
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
 
-FROM scratch 
-COPY --from=build-env /app/user_services_app /app/user_services_app
-ENTRYPOINT ["/app/user_services_app"]
+FROM alpine:latest  
+
+RUN apk --no-cache add ca-certificates
+
+WORKDIR /root/
+
+COPY --from=builder /app/main .
+
+CMD ["./main"]
