@@ -3,6 +3,7 @@ package base
 import (
 	"context"
 	"database/sql"
+	"encoding/base64"
 	"fmt"
 	"os"
 
@@ -39,7 +40,12 @@ func init() {
 	db = conn
 
 	// MongoDb Connect
-	clientOption := options.Client().ApplyURI("mongodb://127.0.0.1:27017")
+	mongoUser := base64.URLEncoding.EncodeToString([]byte(os.Getenv("mongoUser")))
+	mongoPass := base64.StdEncoding.EncodeToString([]byte(os.Getenv("mongoPwd")))
+	dbConn := fmt.Sprintf("mongodb://%s:%s@127.0.0.1:27017/?authSource=admin", mongoUser, mongoPass)
+	fmt.Println(dbConn)
+
+	clientOption := options.Client().ApplyURI(dbConn)
 	client, err := mongo.Connect(context.TODO(), clientOption)
 
 	if err != nil {
