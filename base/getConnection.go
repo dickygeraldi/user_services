@@ -1,16 +1,13 @@
 package base
 
 import (
-	"context"
 	"database/sql"
-	"encoding/base64"
 	"fmt"
 	"os"
 
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 var db *sql.DB
@@ -40,25 +37,25 @@ func init() {
 	db = conn
 
 	// MongoDb Connect
-	mongoUser := base64.URLEncoding.EncodeToString([]byte(os.Getenv("mongoUser")))
-	mongoPass := base64.StdEncoding.EncodeToString([]byte(os.Getenv("mongoPwd")))
-	dbConn := fmt.Sprintf("mongodb://%s:%s@127.0.0.1:27017/?authSource=admin", mongoUser, mongoPass)
-	fmt.Println(dbConn)
+	// mongoUser := base64.URLEncoding.EncodeToString([]byte(os.Getenv("mongoUser")))
+	// mongoPass := base64.StdEncoding.EncodeToString([]byte(os.Getenv("mongoPwd")))
+	// dbConn := fmt.Sprintf("mongodb://%s:%s@127.0.0.1:27017/?authSource=admin", mongoUser, mongoPass)
+	// fmt.Println(dbConn)
 
-	clientOption := options.Client().ApplyURI(dbConn)
-	client, err := mongo.Connect(context.TODO(), clientOption)
+	// clientOption := options.Client().ApplyURI(dbConn)
+	// client, err := mongo.Connect(context.TODO(), clientOption)
 
-	if err != nil {
-		panic(err)
-	}
+	// if err != nil {
+	// 	panic(err)
+	// }
 
-	err = client.Ping(context.TODO(), nil)
-	if err != nil {
-		panic(err)
-	}
+	// err = client.Ping(context.TODO(), nil)
+	// if err != nil {
+	// 	panic(err)
+	// }
 
-	dbMongo = client
-	fmt.Println("Connected to MongoDB!")
+	// dbMongo = client
+	// fmt.Println("Connected to MongoDB!")
 }
 
 func GetDB() *sql.DB {
