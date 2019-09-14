@@ -9,7 +9,7 @@ pipeline:
     #   registry: gcr.io
     #   repo: dickygeraldi/user_services
     #   tags: ["commot_$DRONE_COMMIT", "build_$DRONE_BUILD_NUMBER", "latest"]
-    #   json_key:
+    #   json_key: 
     #     from_secret: GOOGLE_CREDENTIALS
     repo: dickygeraldi/user_services
     tags: ["commot_$DRONE_COMMIT", "build_$DRONE_BU ILD_NUMBER", "latest"]
