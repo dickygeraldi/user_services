@@ -18,7 +18,7 @@ pipeline:
       branch: develop
     
   deploy:
-    image: Google/cloud-sdk:latest 
+    image: Google/cloud-sdk:latest  
     environment:
       PROJECT_ID: ideart
       COMPUTE_ZONE: asia-southeast1-a
