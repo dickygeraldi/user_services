@@ -1,6 +1,6 @@
 pipeline:
   gcr:
-    image: plugins/gcr
+    # image: plugins/gcr
     registry: gcr.io
     repo: dickygeraldi/user_services
     tags: ["commot_$DRONE_COMMIT", "build_$DRONE_BUILD_NUMBER", "latest"]
