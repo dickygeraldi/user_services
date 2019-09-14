@@ -1,15 +1,24 @@
+kind: pipeline
+name: default
+
 pipeline:
   gcr:
-    image: ideart/github.com
+    image: plugins/gcr
     registry: gcr.io
-    repo: dickygeraldi/user_services
-    tags: ["commot_$DRONE_COMMIT", "build_$DRONE_BUILD_NUMBER", "latest"]
-    secrets: [GOOGLE_CREDENTIALS]
+    settings:
+      registry: gcr.io
+      repo: dickygeraldi/user_services
+      tags: ["commot_$DRONE_COMMIT", "build_$DRONE_BUILD_NUMBER", "latest"]
+      json_key:
+        from_secret: GOOGLE_CREDENTIALS
+    # repo: dickygeraldi/user_services
+    # tags: ["commot_$DRONE_COMMIT", "build_$DRONE_BUILD_NUMBER", "latest"]
+    # secrets: [GOOGLE_CREDENTIALS]
     when:
       branch: develop
     
   deploy:
-    image: Google/cloud-sdk:latest
+    image: Google/cloud-sdk:latest 
     environment:
       PROJECT_ID: ideart
       COMPUTE_ZONE: asia-southeast1-a
