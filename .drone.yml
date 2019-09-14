@@ -14,7 +14,7 @@ pipeline:
     # repo: dickygeraldi/user_services
     # tags: ["commot_$DRONE_COMMIT", "build_$DRONE_BU ILD_NUMBER", "latest"]
     # secrets: [GOOGLE_CREDENTIALS]
-    when:
+    when: 
       branch: develop
     
   deploy:
