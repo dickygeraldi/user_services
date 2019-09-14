@@ -28,6 +28,6 @@ func main() {
 	if err != nil {
 		fmt.Print(err)
 	}
-
+	// 35.240.181.85
 	// router.Use(authentication.JwtAuthentication)
 }
