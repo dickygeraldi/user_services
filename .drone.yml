@@ -1,6 +1,6 @@
 pipeline:
   gcr:
-    # image: plugins/gcr
+    image: ideart/github.com
     registry: gcr.io
     repo: dickygeraldi/user_services
     tags: ["commot_$DRONE_COMMIT", "build_$DRONE_BUILD_NUMBER", "latest"]
@@ -18,7 +18,7 @@ pipeline:
     commands:
       - yes | apt-get install golang-1.12 
       - gcloud config set project $PROJECT_ID
-      - gcloud config set compute/zone $COMPUTE_ZONE
+      - gcloud config set compute/zone $COMPUTE_ZONE 
       - gcloud auth activate-service-account --key-file key.json
       - gcloud container clusters get-credentials $CLUSTER_NAME
       - kubectl set image deployment/user-services user-services=gcr.io/$PROJECT_ID/app:$DRONE_BUILD_NUMBER
