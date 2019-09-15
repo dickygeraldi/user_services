@@ -10,7 +10,7 @@ pipeline:
     #   repo: dickygeraldi/user_services
     #   tags: ["commot_$DRONE_COMMIT", "build_$DRONE_BUILD_NUMBER", "latest"]
     #   json_key: 
-    #     from_secret: GOOGLE_CREDENTIALS
+    #     from_secret: GOOGLE_CREDENTIALS 5386b9b67bad95547029c41c5a287b907ca79394
     repo: dickygeraldi/user_services
     tags: ["commot_$DRONE_COMMIT", "build_$DRONE_BUILD_NUMBER", "latest"]
     secrets: [GOOGLE_CREDENTIALS]
