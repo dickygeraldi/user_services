@@ -1,36 +1,42 @@
-kind: pipeline
-name: default
+# kind: pipeline
+# name: default
 
-pipeline:
-  gcr:
-    image: plugins/gcr
-    registry: asia.gcr.io
-    # settings:
-    #   registry: gcr.io
-    #   repo: dickygeraldi/user_services
-    #   tags: ["commot_$DRONE_COMMIT", "build_$DRONE_BUILD_NUMBER", "latest"]
-    #   json_key: 
-    #     from_secret: GOOGLE_CREDENTIALS
-    repo: dickygeraldi/user_services
-    tags: ["commot_$DRONE_COMMIT", "build_$DRONE_BUILD_NUMBER", "latest"]
-    secrets: [GOOGLE_CREDENTIALS]
-    when: 
-      branch: develop
+# pipeline:
+#   gcr:
+#     image: plugins/gcr
+#     registry: asia.gcr.io
+#     # settings:
+#     #   registry: gcr.io
+#     #   repo: dickygeraldi/user_services
+#     #   tags: ["commot_$DRONE_COMMIT", "build_$DRONE_BUILD_NUMBER", "latest"]
+#     #   json_key: 
+#     #     from_secret: GOOGLE_CREDENTIALS
+#     repo: dickygeraldi/user_services
+#     tags: ["commot_$DRONE_COMMIT", "build_$DRONE_BUILD_NUMBER", "latest"]
+#     secrets: [GOOGLE_CREDENTIALS]
+#     when: 
+#       branch: develop
     
 
-  deploy:
-    image: Google/cloud-sdk:latest  
-    environment:
-      PROJECT_ID: ideart
-      COMPUTE_ZONE: asia-southeast1-a
-      CLUSTER_NAME: user-services
-    secrets: [GOOGLE_CREDENTIALS]
+#   deploy:
+#     image: Google/cloud-sdk:latest  
+#     environment:
+#       PROJECT_ID: ideart
+#       COMPUTE_ZONE: asia-southeast1-a
+#       CLUSTER_NAME: user-services
+#     secrets: [GOOGLE_CREDENTIALS]
+#     commands:
+#       - yes | apt-get install golang-1.12 
+#       - gcloud config set project $PROJECT_ID
+#       - gcloud config set compute/zone $COMPUTE_ZONE 
+#       - gcloud auth activate-service-account --key-file key.json
+#       - gcloud container clusters get-credentials $CLUSTER_NAME
+#       - kubectl set image deployment/user-services user-services=gcr.io/$PROJECT_ID/app:$DRONE_BUILD_NUMBER
+#     when:
+#       branch: master
+
+pipeline:
+  build:
+    image: golang
     commands:
-      - yes | apt-get install golang-1.12 
-      - gcloud config set project $PROJECT_ID
-      - gcloud config set compute/zone $COMPUTE_ZONE 
-      - gcloud auth activate-service-account --key-file key.json
-      - gcloud container clusters get-credentials $CLUSTER_NAME
-      - kubectl set image deployment/user-services user-services=gcr.io/$PROJECT_ID/app:$DRONE_BUILD_NUMBER
-    when:
-      branch: master
+      - go build
