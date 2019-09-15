@@ -17,7 +17,7 @@ pipeline:
     when: 
       branch: develop
     
-      
+
   deploy:
     image: Google/cloud-sdk:latest  
     environment:
