@@ -13,7 +13,8 @@ pipeline:
         from_secret: GOOGLE_CREDENTIALS 
     # repo: pixellate/user_services aa1059e5382b1d9a01c7b1660a59fe6a6e8232cc
     # tags: ["commit_${DRONE_COMMIT}", "build_${DRONE_BUILD_NUMBER}", "latest"]
-    # secrets: [GOOGLE_CREDENTIALS]
+    # secrets: [GOOGLE_CREDENTIALS] 936ea74bec13d09fd9b398edac8997a5fbd2ba26
+    
     when: 
       branch: develop
     
@@ -34,4 +35,3 @@ pipeline:
       - kubectl set image deployment/user-services user-services=gcr.io/$PROJECT_ID/app:$DRONE_BUILD_NUMBER
     when:
       branch: master
-
