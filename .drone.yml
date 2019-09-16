@@ -24,7 +24,7 @@ pipeline:
       CLUSTER_NAME: pixellate-user-service-dev
     secrets: [GOOGLE_CREDENTIALS]
     commands:
-      - yes | apt-get install golang-1.12 
+      - yes | apt-get install golang-go
       - gcloud config set project $PROJECT_ID
       - gcloud config set compute/zone $COMPUTE_ZONE 
       - gcloud auth activate-service-account --key-file key.json
