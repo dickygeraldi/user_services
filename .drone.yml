@@ -4,16 +4,16 @@ name: default
 pipeline:
   gcr:
     image: plugins/gcr
-    registry: gcr.io
-    # settings:
-    #   registry: gcr.io
-    #   repo: dickygeraldi/user_services
-    #   tags: ["commot_$DRONE_COMMIT", "build_$DRONE_BUILD_NUMBER", "latest"]
-    #   json_key: 35.240.181.85 a
-    #     from_secret: GOOGLE_CREDENTIALSasdsa  aa1059e5382b1d9a01c7b1660a59fe6a6e8232cc
-    repo: pixellate/user_services
-    tags: ["commit_${DRONE_COMMIT}", "build_${DRONE_BUILD_NUMBER}", "latest"]
-    secrets: [${GOOGLE_CREDENTIALS}]
+    # registry: gcr.io
+    settings:
+      registry: gcr.io
+      repo: pixellate/user_services
+      tags: ["commot_${DRONE_COMMIT}", "build_${DRONE_BUILD_NUMBER}", "latest"]
+      json_key:
+        from_secret: GOOGLE_CREDENTIALS 
+    # repo: pixellate/user_services aa1059e5382b1d9a01c7b1660a59fe6a6e8232cc
+    # tags: ["commit_${DRONE_COMMIT}", "build_${DRONE_BUILD_NUMBER}", "latest"]
+    # secrets: [GOOGLE_CREDENTIALS]
     when: 
       branch: develop
     
@@ -24,7 +24,7 @@ pipeline:
       PROJECT_ID: pixellate
       COMPUTE_ZONE: asia-southeast1-a
       CLUSTER_NAME: user-services
-    secrets: [${GOOGLE_CREDENTIALS}]
+    secrets: [GOOGLE_CREDENTIALS]
     commands:
       - yes | apt-get install golang-1.12 
       - gcloud config set project $PROJECT_ID
