@@ -1,9 +1,9 @@
 package authentication
 
 import (
-	"creart_new/models"
 	"net/http"
 	"os"
+	"user_services/models"
 
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
