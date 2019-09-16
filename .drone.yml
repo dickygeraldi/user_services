@@ -7,10 +7,21 @@ pipeline:
     # registry: gcr.io
     settings:
       registry: gcr.io
-      repo: pixellate/github.com/dickygeraldi/user_services
-      tags: ["commot_${DRONE_COMMIT}", "build_${DRONE_BUILD_NUMBER}", "latest"]
-      json_key:
-        from_secret: GOOGLE_CREDENTIALS 
+      repo: pixellate/user_services
+      # tags: ["commot_${DRONE_COMMIT}", "build_${DRONE_BUILD_NUMBER}", "latest"]
+      json_key: > 
+      {
+        "type": "service_account",
+        "project_id": "pixellate",
+        "private_key_id": "936ea74bec13d09fd9b398edac8997a5fbd2ba26",
+        "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCuJLdZD8VvtP0b\ncdUKmGizueYpyu2heQEFRv4m2a/29DBlaKzimLGURRevZgDpa8/pLxWV/JtrrULV\n7eUvHCivWN7la25GLtoHhFhBaoIy/uQQdGrFAXiU1ELbOw1gq2MkCwzc0Sw0W1s1\n+g4GtzSCkJc6gjJeT9XmbOJF1PoXugkPj/lZn9/2m22eeYV/v6B1pCsprsAJnkMH\nk3ul0MXDSiejG/ZEFKQ0kRKoz4alPVM1dd8w4tXux9VfvRPh8vtzr0MzsTSnVlUU\nALukZMt+j/pSvq1YVeAY+6OSuZ6wcqPl7Th6fZMq3Z/OnC0fNlN2B3L7h1cQclt2\nn361dEx5AgMBAAECggEAFZVQIqITZcIUNUK1ZYHohy8BFXi03VSgoWFwRksodaaD\n+Yug0thbOQ3brsXpEsUloIhxB9UGQ9EWdaqNo1o9eicdACkBosHzjKc0442ye6TP\nCjGNmqNxKRwKOb7+zFaNm/XhJxynOomAm2bltmQeRljqn2or2TfSomOoI0DPauFz\n00ouVA6ohRD/tCABymZ3xyWShbjFJFBTyjXeiOKivpHp11XYCcSrljkoWMzBJast\nusAsP4DH67qkSB0gsu6/0vDHEi7+bR0ON19sgYym8u6TVbPwAA4mDB9j7oZiitWa\nYb1/DKAUcQNNIIIdGD86P/+cjXXX3WGUBJq+Cxl0UQKBgQDcamY4zwqNVjcu7pyw\nsN87xSAHkcQ13X24wJ1I5c2xT7KyTSXr/gyxuV5kkteAg6lFyvveestpI3fwQHJI\nmmgPLqip5rJKM8CBosT5VG3WWQ8hfmI1jUXu9iZfCg3Sdt9lkrb13Npnw6sKGcYe\n1HzUi20mWizHodAvCWXWhP7b0QKBgQDKQeyN6+98e1XCHtCwKCjjbl7vlc+i8CXA\nv8DMBECo6tCrE3ptS8/P8St77I9w0n7/lg9FVHKA27r9NnnHpCwnw3zzy36kewgd\nlIksHIw4wmnTyjVHNMj0asa8mKPiiC5/LhG2D/L12lxQDVoHlUuVqBg4NoPFLFjs\nbgVMfu+YKQKBgQCsHO1beNiNiwAmRq7WDhcSzhf3sSxcv2rXpJhs/v1CcrBgKHvv\nLn7tHImH0V4z/Rtl414P2SUTIV4bncdfyCpviIituvYHmSe+UsKqyvHFyd9V0SGR\nHZK5ST6nQeuPJ8HDx+/URrPJCPJ7PasGEfiz43fE1e9Xp5Qv1o/OFiYIsQKBgCVB\nj3l1BGBBt8JSOs64FxANvJ8VUXIKGmou6Cyse9yhpF5e8CZB2L3NBt2E7ccyfwJF\nefqjW5Qw5XjPGA+WRivs7o9Z5LIXl58bRUlC2PF7nlLM5JOBPaMIKCOFWmrX+vii\nW9DVj0OKPYbhbrwG3C1tEUkJgaxIRvkGKyO0Hh5BAoGBAJb3yMbxziDMvppygv36\nxzng4YSNvfmYxLZnXKgBzIjgsWM1w0/77w0zHTbsl7mbcdFotmaqlIPR2eMGivR4\n10a5osrbLcdVtSQDG1URzEffHZSS6l7X2jW6h3w9c4e+segSqxwBLIvs8f500khz\nBDtiupW1zyq5Cl5p3fyq1DTS\n-----END PRIVATE KEY-----\n",
+        "client_email": "drone-sa@pixellate.iam.gserviceaccount.com",
+        "client_id": "108461850268270172611",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/drone-sa%40pixellate.iam.gserviceaccount.com"
+      }
     # repo: pixellate/user_services aa1059e5382b1d9a01c7b1660a59fe6a6e8232cc
     # tags: ["commit_${DRONE_COMMIT}", "build_${DRONE_BUILD_NUMBER}", "latest"] sada
     # secrets: [GOOGLE_CREDENTIALS] 936ea74bec13d09fd9b398edac8997a5fbd2ba26
