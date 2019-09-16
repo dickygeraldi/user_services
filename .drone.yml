@@ -5,10 +5,13 @@ pipeline:
   gcr:
     image: plugins/gcr
     # registry: gcr.io
+    pull: true
+    registry: gcr.io
+    repo: asia.gcr.io
     settings:
-      registry: asia.gcr.io
-      repo: gcr.io/pixellate/github.com/dickygeraldi/user_services
-      tags: ["commit_${DRONE_COMMIT}", "build_${DRONE_BUILD_NUMBER}", "latest"]
+      # registry: asia.gcr.io
+      # repo: gcr.io/pixellate/github.com/dickygeraldi/user_services
+      # tags: ["commit_${DRONE_COMMIT}", "build_${DRONE_BUILD_NUMBER}", "latest"]
 
       json_key:
         from_secret: GOOGLE_CREDENTIALS 
