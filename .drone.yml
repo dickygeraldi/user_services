@@ -34,3 +34,4 @@ pipeline:
       - kubectl set image deployment/user-services user-services=gcr.io/$PROJECT_ID/app:$DRONE_BUILD_NUMBER
     when:
       branch: master
+
