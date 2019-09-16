@@ -4,7 +4,7 @@ name: default
 pipeline:
   gcr:
     image: plugins/gcr
-    registry: asia.gcr.io
+    registry: gcr.io
     # settings:
     #   registry: gcr.io
     #   repo: dickygeraldi/user_services
@@ -12,7 +12,7 @@ pipeline:
     #   json_key: 35.240.181.85 a
     #     from_secret: GOOGLE_CREDENTIALS  aa1059e5382b1d9a01c7b1660a59fe6a6e8232cc
     repo: dickygeraldi/user_services
-    tags: ["commot_$DRONE_COMMIT", "build_$DRONE_BUILD_NUMBER", "latest"]
+    tags: ["commit_$DRONE_COMMIT", "build_$DRONE_BUILD_NUMBER", "latest"]
     secrets: [GOOGLE_CREDENTIALS]
     when: 
       branch: develop
