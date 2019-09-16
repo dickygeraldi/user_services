@@ -11,7 +11,7 @@ pipeline:
     #   tags: ["commot_$DRONE_COMMIT", "build_$DRONE_BUILD_NUMBER", "latest"]
     #   json_key: 35.240.181.85 a
     #     from_secret: GOOGLE_CREDENTIALS  aa1059e5382b1d9a01c7b1660a59fe6a6e8232cc
-    repo: dickygeraldi/user_services
+    repo: pixellate/user_services
     tags: ["commit_${DRONE_COMMIT}", "build_${DRONE_BUILD_NUMBER}", "latest"]
     secrets: [GOOGLE_CREDENTIALS]
     when: 
@@ -21,7 +21,7 @@ pipeline:
   deploy:
     image: Google/cloud-sdk:latest  
     environment:
-      PROJECT_ID: ideart
+      PROJECT_ID: pixellate
       COMPUTE_ZONE: asia-southeast1-a
       CLUSTER_NAME: user-services
     secrets: [GOOGLE_CREDENTIALS]
