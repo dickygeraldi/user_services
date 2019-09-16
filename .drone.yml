@@ -21,7 +21,7 @@ pipeline:
     environment:
       PROJECT_ID: pixellate
       COMPUTE_ZONE: asia-southeast1-a
-      CLUSTER_NAME: user-services
+      CLUSTER_NAME: pixellate-user-service-dev
     secrets: [GOOGLE_CREDENTIALS]
     commands:
       - yes | apt-get install golang-1.12 
@@ -29,6 +29,6 @@ pipeline:
       - gcloud config set compute/zone $COMPUTE_ZONE 
       - gcloud auth activate-service-account --key-file key.json
       - gcloud container clusters get-credentials $CLUSTER_NAME
-      - kubectl set image deployment/user-services user-services=gcr.io/$PROJECT_ID/app:$DRONE_BUILD_NUMBER
+      - kubectl set image deployment/pixellate-user-services-dev pixellate-user-services-dev=asia.gcr.io/$PROJECT_ID/app:$DRONE_BUILD_NUMBER
     when:
-      branch: master
+      branch: develop
