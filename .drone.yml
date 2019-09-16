@@ -6,7 +6,7 @@ pipeline:
     image: plugins/gcr
     # registry: gcr.io
     settings:
-      registry: gcr.io
+      registry: asia.gcr.io
       repo: pixellate/user_services
       tags: ["commot_${DRONE_COMMIT}", "build_${DRONE_BUILD_NUMBER}", "latest"]
       json_key:
