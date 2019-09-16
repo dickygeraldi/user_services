@@ -7,7 +7,7 @@ pipeline:
     # registry: gcr.io
     settings:
       registry: gcr.io
-      repo: pixellate/user_services
+      repo: dickygeraldi/user_services
       # tags: ["commot_${DRONE_COMMIT}", "build_${DRONE_BUILD_NUMBER}", "latest"]
       json_key:
         from_secret: GOOGLE_CREDENTIALS 
