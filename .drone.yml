@@ -5,7 +5,7 @@ pipeline:
   gcr:
     image: plugins/gcr
     registry: asia.gcr.io
-      # json_key: aa1059e5382b1d9a01c7b1660a59fe6a6e8232cc
+      # json_key: aa1059e5382b1d9a01c7b1660a59fe6a6e8232cc asd
     repo: pixellate/pixellate-user-services 
     tags: ["commit_${DRONE_COMMIT}", "build_${DRONE_BUILD_NUMBER}", "latest"]
     secrets: [GOOGLE_CREDENTIALS]
