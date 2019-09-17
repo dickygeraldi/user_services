@@ -23,7 +23,7 @@ pipeline:
       - yes | apt-get install golang-go
       - gcloud config set project $PROJECT_ID
       - gcloud config set compute/zone $COMPUTE_ZONE 
-      # - gcloud auth activate-service-account --key-file=key.json
+      # - gcloud auth activate-service-account --key-file=key.json da
       - gcloud container clusters get-credentials $CLUSTER_NAME --zone=asia-southeast1-a
       - kubectl set image deployment/pixellate-user-services-dev pixellate-user-services-dev=asia.gcr.io/$PROJECT_ID/app:$DRONE_BUILD_NUMBER
     when:
