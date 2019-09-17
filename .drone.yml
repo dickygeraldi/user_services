@@ -5,7 +5,6 @@ pipeline:
   gcr:
     image: plugins/gcr
     registry: asia.gcr.io
-      # json_key: aa1059e5382b1d9a01c7b1660a59fe6a6e8232cc 
     repo: pixellate/pixellate-user-services 
     tags: ["commit_${DRONE_COMMIT}", "build_${DRONE_BUILD_NUMBER}", "latest"]
     secrets: [GOOGLE_CREDENTIALS]
@@ -26,6 +25,6 @@ pipeline:
       - base64 --decode key > new_key.json
       - gcloud auth activate-service-account drone-sa@pixellate.iam.gserviceaccount.com --key-file new_key.json
       - gcloud container clusters get-credentials $CLUSTER_NAME --zone=asia-southeast1-a
-      - kubectl set image deployment/pixellate-user-services-dev pixellate-user-services-dev=asia.gcr.io/$PROJECT_ID/pixellate-user-services/build:$DRONE_BUILD_NUMBER
+      - kubectl set image deployment/pixellate-user-services-dev pixellate-user-services-dev=asia.gcr.io/$PROJECT_ID/pixellate-user-services/app:$DRONE_BUILD_NUMBER
     when:
       branch: develop
