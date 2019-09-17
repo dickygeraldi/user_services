@@ -25,7 +25,7 @@ pipeline:
       - echo $GOOGLE_CREDENTIALS > key.json
       - sed "s/'/ /g" key.json > new_key.json
       - cat new_key.json
-      - gcloud auth activate-service-account drone-sa@pixellate.iam.gserviceaccount.com --key-file=new_key.json
+      - gcloud auth activate-service-account drone-sa@pixellate.iam.gserviceaccount.com --key-file new_key.json
       - gcloud container clusters get-credentials $CLUSTER_NAME --zone=asia-southeast1-a
       - kubectl set image deployment/pixellate-user-services-dev pixellate-user-services-dev=asia.gcr.io/$PROJECT_ID/app:$DRONE_BUILD_NUMBER
     when:
