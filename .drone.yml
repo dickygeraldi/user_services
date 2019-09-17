@@ -18,12 +18,13 @@ pipeline:
       PROJECT_ID: pixellate
       COMPUTE_ZONE: asia-southeast1-a
       CLUSTER_NAME: pixellate-user-services-dev
-    secrets: [GOOGLE_CREDENTIALS]
+    secrets: [GOOGLE_KEY]
     commands:
       - gcloud config set project $PROJECT_ID
       - gcloud config set compute/zone $COMPUTE_ZONE 
-      - echo $GOOGLE_CREDENTIALS > key.json
-      - sed "s/'/ /g" key.json > new_key.json
+      - echo $GOOGLE_KEY > key
+      - echo $GOOGLE_KEY
+      - base64 --decode key > new_key.json
       - cat new_key.json
       - gcloud auth activate-service-account drone-sa@pixellate.iam.gserviceaccount.com --key-file new_key.json
       - gcloud container clusters get-credentials $CLUSTER_NAME --zone=asia-southeast1-a
