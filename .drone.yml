@@ -8,7 +8,7 @@ pipeline:
       # json_key: aa1059e5382b1d9a01c7b1660a59fe6a6e8232cc
     repo: pixellate/pixellate-user-services 
     tags: ["commit_${DRONE_COMMIT}", "build_${DRONE_BUILD_NUMBER}", "latest"]
-    secrets: [GOOGLE_CREDENTIALS]
+    secrets: [GOOGLE_CREDENTIALS2]
     when: 
       branch: develop
     
@@ -18,11 +18,11 @@ pipeline:
       PROJECT_ID: pixellate
       COMPUTE_ZONE: asia-southeast1-a
       CLUSTER_NAME: pixellate-user-services-dev
-    secrets: [GOOGLE_CREDENTIALS]
+    secrets: [GOOGLE_CREDENTIALS2]
     commands:
       - gcloud config set project $PROJECT_ID
       - gcloud config set compute/zone $COMPUTE_ZONE 
-      - echo $GOOGLE_CREDENTIALS > key.json
+      - echo $GOOGLE_CREDENTIALS2 > key.json
       - cat key.json
       - gcloud auth activate-service-account drone-sa@pixellate.iam.gserviceaccount.com --key-file key.json
       - gcloud container clusters get-credentials $CLUSTER_NAME --zone=asia-southeast1-a
