@@ -25,6 +25,6 @@ pipeline:
       - gcloud config set compute/zone $COMPUTE_ZONE 
       # - gcloud auth activate-service-account --key-file key.json
       # - gcloud container clusters get-credentials $CLUSTER_NAME
-      - kubectl set image deployment/pixellate-user-services-dev pixellate-user-services-dev=asia.gcr.io/$PROJECT_ID/app:$DRONE_BUILD_NUMBER
+      - kubectl set image deployment/pixellate-user-services-dev pixellate-user-services-dev=asia.gcr.io/$PROJECT_ID/app:$DRONE_BUILD_NUMBER --port=8000
     when:
       branch: develop
