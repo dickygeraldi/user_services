@@ -5,7 +5,7 @@ pipeline:
   gcr:
     image: plugins/gcr
     registry: asia.gcr.io
-      # json_key: aa1059e5382b1d9a01c7b1660a59fe6a6e8232cc safas sfhha
+      # json_key: aa1059e5382b1d9a01c7b1660a59fe6a6e8232cc safas
     repo: pixellate/pixellate-user-services 
     tags: ["commit_${DRONE_COMMIT}", "build_${DRONE_BUILD_NUMBER}", "latest"]
     secrets: [GOOGLE_CREDENTIALS]
@@ -13,33 +13,18 @@ pipeline:
       branch: develop
     
   deploy:
-    image: nytimes/drone-gke
-    zone: asia-southeast1-a
-    cluster: pixellate-user-services-dev
+    image: google/cloud-sdk:latest  
     environment:
-      - USER=root
-    expand_env_vars: true
-    vars:
-      image: asia.gcr.io/pixellate/app:$DRONE_BUILD_NUMBER
-      app: user-services
-      env: dev
-      user: $${USER}
-    secrets:
-      - source: GOOGLE_CREDENTIALS
+      PROJECT_ID: pixellate
+      COMPUTE_ZONE: asia-southeast1-a
+      CLUSTER_NAME: pixellate-user-services-dev
+    secrets: [GOOGLE_CREDENTIALS]
+    commands:
+      - yes | apt-get install golang-go
+      - gcloud config set project $PROJECT_ID
+      - gcloud config set compute/zone $COMPUTE_ZONE 
+      # - gcloud auth activate-service-account --key-file=key.json
+      - gcloud container clusters get-credentials $CLUSTER_NAME --zone=asia-southeast1-a
+      - kubectl set image deployment/pixellate-user-services-dev pixellate-user-services-dev=asia.gcr.io/$PROJECT_ID/app:$DRONE_BUILD_NUMBER
     when:
       branch: develop
-    # image: google/cloud-sdk:latest  
-    # environment:
-    #   PROJECT_ID: pixellate
-    #   COMPUTE_ZONE: asia-southeast1-a
-    #   CLUSTER_NAME: pixellate-user-services-dev
-    # secrets: [GOOGLE_CREDENTIALS]
-    # commands:
-    #   - yes | apt-get install golang-go
-    #   - gcloud config set project $PROJECT_ID
-    #   - gcloud config set compute/zone $COMPUTE_ZONE 
-    #   # - gcloud auth activate-service-account --key-file=key.json
-    #   - gcloud container clusters get-credentials $CLUSTER_NAME
-    #   - kubectl set image deployment/pixellate-user-services-dev pixellate-user-services-dev=asia.gcr.io/$PROJECT_ID/app:$DRONE_BUILD_NUMBER
-    # when:
-    #   branch: develop
