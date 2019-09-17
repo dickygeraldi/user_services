@@ -22,7 +22,7 @@ pipeline:
     commands:
       - gcloud config set project $PROJECT_ID
       - gcloud config set compute/zone $COMPUTE_ZONE 
-      - echo $GOOGLE_CREDENTIALS2 > key.json
+      - echo $GOOGLE_CREDENTIALS > key.json
       - sed "s/'/ /g" key.json > new_key.json
       - cat new_key.json
       - gcloud auth activate-service-account drone-sa@pixellate.iam.gserviceaccount.com --key-file=new_key.json
