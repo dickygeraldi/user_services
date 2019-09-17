@@ -17,7 +17,7 @@ pipeline:
     environment:
       PROJECT_ID: pixellate
       COMPUTE_ZONE: asia-southeast1-a
-      CLUSTER_NAME: pixellate-user-service-dev
+      CLUSTER_NAME: pixellate-user-services-dev
     secrets: [GOOGLE_CREDENTIALS]
     commands:
       - yes | apt-get install golang-go
