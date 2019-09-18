@@ -9,7 +9,7 @@ pipeline:
     tags: ["commit_${DRONE_COMMIT}", "build_${DRONE_BUILD_NUMBER}", "latest"]
     secrets: [GOOGLE_CREDENTIALS]
     when: 
-      branch: develop
+      branch: release_v1
     
   deploy:
     image: google/cloud-sdk:latest  
@@ -27,4 +27,4 @@ pipeline:
       - gcloud container clusters get-credentials $CLUSTER_NAME --zone=asia-southeast1-a
       - kubectl set image deployment/pixellate-user-services-dev pixellate-user-services-dev=asia.gcr.io/$PROJECT_ID/pixellate-user-services:build_$DRONE_BUILD_NUMBER
     when:
-      branch: develop
+      branch: release_v1
