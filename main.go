@@ -15,6 +15,7 @@ func main() {
 	auth := router.Group("/auth")
 	{
 		auth.POST("/v1/create-account", controllers.CreateCreatorAccount)
+		auth.POST("/v1/login", controllers.AuthLogin)
 		auth.GET("/v1/coba", controllers.Test)
 	}
 
