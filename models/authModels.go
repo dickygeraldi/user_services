@@ -2,6 +2,7 @@ package models
 
 import (
 	"time"
+	"user_services/base"
 
 	"github.com/Shopify/sarama"
 	"github.com/dgrijalva/jwt-go"
@@ -66,8 +67,29 @@ type KafkaProducer struct {
 }
 
 // create table creator (userId integer primary key, username varchar(20) unique NOT NULL, phone varchar(13) unique NOT NULL, password varchar(32) NOT NULL, email varchar(50) unique NOT NULL, fullName varchar(40) NOT NULL, source varchar(30) NOT NULL, fbId varchar(20) null, googleId varchar(20) null, profilePict varchar(40) null, token varchar(500) null, otpAuth varchar(6) null)
+// ALTER TABLE creatordetails (userid varchar(20) primary key, about varchar(200) null, urllink varchar(100) null, birtdate varchar(50) null, isactive varchar(1) null, isactive varchar(1) null, gender varchar(1) null, isprivate(1) null) index
 
 // Insert data to mongodb for log and details user
-func (data *AccountData) LoggingAddDetails() {
+func LoggingAddDetails(user_id string) {
+	// Add to Creator Balance and Creator Details
+	var isBlocked, isActive, balance, point, isprivate = 0, 0, 0, 0, 0
+	var about = "This is about you, so describe who are you?"
+
+	idCBalance := GetRandomString()
+	_, err := base.GetDB().Query("insert into creatorbalance (idcreatorbalance, userid, balance, pin, isblocked, isactive, point) values($1, $2, $3, $4, $5, $6)",
+		idCBalance, user_id, balance, "", isBlocked, isActive, point)
+
+	if err != nil {
+		panic(err)
+	}
+
+	_, err = base.GetDB().Query("insert into creatordetails (userid, about, isactive, isprivate) values($1, $2, $3, $4)",
+		user_id, about, isActive, isprivate)
+
+	if err != nil {
+		panic(err)
+	}
+
+	// Add to creator log using mongodb
 
 }

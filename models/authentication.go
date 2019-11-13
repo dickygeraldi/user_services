@@ -42,13 +42,15 @@ func getKafkaConfig(username, password string) *sarama.Config {
 }
 
 // Kafka producer
-func SendMessage(topic, msg string) error {
+func SendMessage(topic, msg string) map[string]interface{} {
 
 	kafkaConfig := getKafkaConfig("", "")
 	producers, err := sarama.NewSyncProducer([]string{"localhost:9200"}, kafkaConfig)
 
 	if err != nil {
-		panic(err)
+		return gin.H{
+			"error": err,
+		}
 	}
 
 	defer func() {
@@ -68,7 +70,9 @@ func SendMessage(topic, msg string) error {
 
 	partition, offset, err := kafka.Producer.SendMessage(kafkaMsg)
 	if err != nil {
-		panic(err)
+		return gin.H{
+			"error": err,
+		}
 	}
 
 	fmt.Println("Send message success, Topic %v, Partition %v, Offset %d", topic, partition, offset)
@@ -120,7 +124,6 @@ func (data *AccountData) Validate() (map[string]interface{}, bool) {
 	if countEmail > 0 {
 		return gin.H{"status": false, "message": "Email has been used"}, false
 	}
-	fmt.Println(countPhone, countUsername, countEmail)
 
 	return gin.H{"status": false, "message": "Requirement passed"}, true
 }
@@ -137,11 +140,10 @@ func (data *AccountData) CreateCreator() map[string]interface{} {
 	accountJSONString := string(accountByte)
 
 	go SendMessage("mailing_service", accountJSONString)
-	// go
 
 	// Add parameter
 	data.UserId = GetRandomString()
-	data.Source = "Create from Apps"
+	// go LoggingAddDetails(data.UserId)
 
 	// Hashing Password
 	key := os.Getenv("password_token")
@@ -150,12 +152,17 @@ func (data *AccountData) CreateCreator() map[string]interface{} {
 	data.Password = hex.EncodeToString(hashPassword[:])
 
 	// Create an sql and insert
-	base.GetDB().QueryRow("insert into creator (userId, username, phone, password, email, fullname, source) values ($1, $2, $3, $4, $5, $6, $7)",
+	_, err := base.GetDB().Query("insert into creator (userId, username, phone, password, email, fullname, source) values ($1, $2, $3, $4, $5, $6, $7)",
 		data.UserId, data.Username, data.Phone, data.Password, data.Email, data.FullName, data.Source)
+
+	if err != nil {
+		return gin.H{
+			"error": err,
+		}
+	}
 
 	// Create response
 	response := gin.H{"Status": true, "Message": "Data berhasil masuk"}
-	response["creatorData"] = data
 
 	return response
 }

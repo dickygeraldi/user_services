@@ -2,6 +2,8 @@ kind: pipeline
 name: default
 
 pipeline:
+  testing:
+        
   gcr:
     image: plugins/gcr
     registry: asia.gcr.io
@@ -21,10 +23,14 @@ pipeline:
     commands:
       - gcloud config set project $PROJECT_ID
       - gcloud config set compute/zone $COMPUTE_ZONE 
-      - echo $GOOGLE_KEY > key
-      - base64 --decode key > new_key.json
+      - base64 --decode $GOOGLE_KEY > new_key.json
       - gcloud auth activate-service-account drone-sa@pixellate.iam.gserviceaccount.com --key-file new_key.json
       - gcloud container clusters get-credentials $CLUSTER_NAME --zone=asia-southeast1-a
       - kubectl set image deployment/pixellate-user-services-dev pixellate-user-services-dev=asia.gcr.io/$PROJECT_ID/pixellate-user-services:build_$DRONE_BUILD_NUMBER
     when:
       branch: release_v1
+
+# ~ Membuat recovery email
+# ~ Saldo Sandbox dan saldo production
+# ~ Kategori tiket bantuan
+# ~ Penyortiran tiket bantuan secara ascending

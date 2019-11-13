@@ -11,7 +11,6 @@ import (
 )
 
 func main() {
-	// router := mux.NewRouter()
 	router := gin.Default()
 	auth := router.Group("/auth")
 	{
@@ -28,6 +27,4 @@ func main() {
 	if err != nil {
 		fmt.Print(err)
 	}
-	// 35.240.181.85
-	// router.Use(authentication.JwtAuthentication)
 }

@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Auth(c *gin.Context) {
+var Autentikasi = func(c *gin.Context) {
 	tokenString := c.Request.Header.Get("Authorization")
 	tk := &models.Token{}
 
@@ -23,11 +23,8 @@ func Auth(c *gin.Context) {
 				"Message": "Invalid Signature",
 			}
 			c.JSON(http.StatusUnauthorized, result)
+			c.Abort()
 		}
-		result := gin.H{
-			"Message": "Bad Request",
-		}
-		c.JSON(http.StatusBadRequest, result)
 	}
 
 	if !tkn.Valid {
@@ -35,5 +32,6 @@ func Auth(c *gin.Context) {
 			"Message": "Invalid Token",
 		}
 		c.JSON(http.StatusUnauthorized, result)
+		c.Abort()
 	}
 }
