@@ -168,6 +168,7 @@ func (data *AccountData) CreateCreator() map[string]interface{} {
 }
 
 func (data *AccountData) Data() map[string]interface{} {
-	response := gin.H{"Status": true, "username": data.Username}
+	response := gin.H{"Status": true}
+	response["data"] = data
 	return response
 }
