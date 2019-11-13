@@ -39,9 +39,6 @@ var AuthLogin = func(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
 
-	response := gin.H{
-		"statusCode": "00",
-		"username":   json.Username,
-	}
+	response := json.Data();
 	c.JSON(200, response)
 }
